@@ -1,0 +1,13 @@
+<table id="example" datatable [dtOptions]="dtOptions" class="display" style="width:100%">
+    <thead>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of items">
+            <td *ngFor="let objKey of _object.keys(row)">{{row[objKey]}}</td>
+        </tr>
+        <tr *ngIf="items?.length == 0">
+            <td colspan="3" class="no-data-available">No data!</td>
+        </tr>
+    </tbody>
+</table>
