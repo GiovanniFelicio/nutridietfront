@@ -1,4 +1,4 @@
-export class DataTablesResponse {
+export class DataTable {
     data: any[];
     draw: number;
     recordsFiltered: number;

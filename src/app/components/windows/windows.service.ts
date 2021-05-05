@@ -6,8 +6,4 @@ import { Injectable } from '@angular/core';
 export class WindowsService {
 
   constructor() { }
-
-  teste() {
-    console.log("WindowsService")
-  }
 }

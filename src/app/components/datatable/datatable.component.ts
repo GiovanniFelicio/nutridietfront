@@ -1,7 +1,7 @@
+import { AbstractModel } from 'src/app/core/interfaces/abstract.model';
+import { DatatableService } from './datatable.service';
 import { NDDataTableColumn } from 'src/app/components/datatable/datatable.column';
-import { DataTablesResponse } from './datatables-response';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Input } from '@angular/core';
 
 
@@ -12,7 +12,7 @@ import { Input } from '@angular/core';
 })
 export class DatatableComponent implements OnInit {
 
-  @Input() model: string;
+  @Input() model: AbstractModel;
 
   @Input() columns: NDDataTableColumn[];
 
@@ -20,35 +20,31 @@ export class DatatableComponent implements OnInit {
   items: any[];
   _object = Object;
 
-  constructor(private http: HttpClient) { }
+  constructor(private datatableService: DatatableService) { }
 
   ngOnInit(): void {
 
-    var that = this;
     var _columns: any[] = []
 
     this.columns.forEach(col => {
       _columns.push({title: col.column})
-    })
+    })    
 
     this.dtOptions = {
       pagingType: 'full_numbers',
       serverSide: true,
       processing: true,
-      ajax: (dataTablesParameters: any, callback) => {
-        that.http
-          .post<DataTablesResponse>('http://127.0.0.1:8000/api/v1/person/data/', dataTablesParameters, {})
-          .subscribe(resp => {
-            that.items = resp.data;
-
-            callback({
-              recordsTotal: resp.recordsTotal,
-              recordsFiltered: resp.recordsFiltered,
-              data: [],
-            });
-          });
-      },
       columns: _columns,
+      ajax: (dataTablesParameters: any, callback) => {
+        this.datatableService.getData(dataTablesParameters).subscribe(resp => {
+          this.items = resp.data
+          callback({
+            recordsTotal: resp.recordsTotal,
+            recordsFiltered: resp.recordsFiltered,
+            data: [],
+          });
+        });
+      }
     };
   }
 }

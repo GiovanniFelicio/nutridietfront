@@ -1,4 +1,4 @@
-import { WindowsService } from './core/windows/windows.service';
+import { PersonComponent } from './views/person/person.component';
 import { PersonRoutes } from './views/person/person.routes';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
