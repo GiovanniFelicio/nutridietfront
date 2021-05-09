@@ -1,20 +1,16 @@
-import { AbstractWindowsComponent } from './../interfaces/abstract.windows.component';
-import { WindowsComponent } from "src/app/components/windows/windows.component";
+import { Route, Routes } from '@angular/router';
+import { Type } from '@angular/core';
 
 
 export class AbstractRoutesConfig {
-    private _path: string
-    private _component: AbstractWindowsComponent
+    constructor(public path: string, public component: Type<any>, public children?: Routes, public outlet?: string) {}
 
-    constructor(private path: string, private component: AbstractWindowsComponent) {
-        this._path = path;
-        this._component = component;
-    }
-
-    toJSON () {
+    toJSON (): Route {
         return {
-            path: this._path,
-            component: this._component
+            path: this.path,
+            component: this.component,
+            children: this.children,
+            outlet: this.outlet
         }
     }
 }

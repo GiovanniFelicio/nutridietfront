@@ -1,3 +1,5 @@
+import { PersonCreateComponent } from './person-create/person-create.component';
+import { EnumPersonRoutes } from './models/enum.person.routes';
 import { AbstractRoutesConfig } from './../../core/routes/abstract.routes.config';
 import { AbstractRoutes } from './../../core/routes/abstract.routes';
 import { PersonComponent } from './person.component';
@@ -9,10 +11,13 @@ export class PersonRoutes {
         }
     }
 
-    private windows(): any[] {
+    private windows(): object[] {
 
-        let base = new AbstractRoutesConfig('person', PersonComponent).toJSON()
+        let routes: object[] = [];
 
-        return [base]
+        routes.push(new AbstractRoutesConfig(EnumPersonRoutes.PERSON, PersonComponent).toJSON())
+        routes.push(new AbstractRoutesConfig(EnumPersonRoutes.PERSONCREATE, PersonCreateComponent).toJSON())
+
+        return routes
     }
 }

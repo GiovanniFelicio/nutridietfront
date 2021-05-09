@@ -1,8 +1,9 @@
-import { AbstractWindowsComponent } from './../../core/interfaces/abstract.windows.component';
+import { PersonService } from './person.service';
 import { AbstractModel } from 'src/app/core/interfaces/abstract.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { NDDataTableColumn } from 'src/app/components/datatable/datatable.column';
-import { Person } from './person';
+import { Person } from './models/person';
+import { ButtonsComponent } from 'src/app/components/template/footer/buttons/buttons.component';
 
 
 @Component({
@@ -10,15 +11,16 @@ import { Person } from './person';
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.css']
 })
-export class PersonComponent extends AbstractWindowsComponent implements OnInit {
+export class PersonComponent implements OnInit {
 
   columns: NDDataTableColumn[] = []
 
-  model: string = 'person'
+  model: Person;
 
-  constructor() {
-    super()
-  }
+  @ViewChild('ndfooter', { read: ViewContainerRef})
+  ndfooter: ViewContainerRef;
+
+  constructor(private personService: PersonService) {}
 
   ngOnInit(): void {
     var that = this;
@@ -28,6 +30,7 @@ export class PersonComponent extends AbstractWindowsComponent implements OnInit 
     that.columns.push(new NDDataTableColumn('Document'))
     that.columns.push(new NDDataTableColumn('Genre'))
     that.columns.push(new NDDataTableColumn('Status'))
+    
   }
 
   getColumns(): NDDataTableColumn[] {
@@ -35,6 +38,10 @@ export class PersonComponent extends AbstractWindowsComponent implements OnInit 
   }
 
   getModel(): AbstractModel {
-    return new Person();
+    return this.model;
+  }
+
+  ngAfterViewInit() {
+    this.personService._configFooter(this.ndfooter, ButtonsComponent);
   }
 }

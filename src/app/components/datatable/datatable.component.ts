@@ -35,6 +35,7 @@ export class DatatableComponent implements OnInit {
       serverSide: true,
       processing: true,
       columns: _columns,
+      responsive: true,
       ajax: (dataTablesParameters: any, callback) => {
         this.datatableService.getData(dataTablesParameters).subscribe(resp => {
           this.items = resp.data

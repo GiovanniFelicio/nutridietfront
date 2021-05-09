@@ -1,3 +1,7 @@
-<div class="container">    
-    <router-outlet></router-outlet>
+<div class="page-wrapper" style="height: 100vh">
+    <nd-header></nd-header>
+    <hr>
+    <div class="container-fluid">
+        <ng-content select="[content]"></ng-content>
+    </div>    
 </div>

@@ -21,10 +21,27 @@ import { HttpClientModule } from '@angular/common/http'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ApiComponent } from './core/api/api.component';
+import { SidenavComponent } from './components/template/sidenav/sidenav.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { PatientComponent } from './views/patient/patient.component';
+import { PatientCreateComponent } from './views/patient/patient-create/patient-create.component';
+import { ButtonComponent } from './components/button/button.component';
+import { ButtonsComponent } from './components/template/footer/buttons/buttons.component';
+import { PatientFormCreateComponent } from './views/patient/patient-create/patient-form-create/patient-form-create.component';
+import { PersonCreateComponent } from './views/person/person-create/person-create.component';
+import { PersonFormCreateComponent } from './views/person/person-create/person-form-create/person-form-create.component';
+
 
 @NgModule({
   declarations: [
@@ -38,20 +55,34 @@ import { ApiComponent } from './core/api/api.component';
     PersonComponent,
     DatatableComponent,
     ApiComponent,
-    WindowsComponent
+    WindowsComponent,
+    SidenavComponent,
+    PatientComponent,
+    PatientCreateComponent,
+    ButtonComponent,
+    ButtonsComponent,
+    PatientFormCreateComponent,
+    PersonCreateComponent,
+    PersonFormCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     DataTablesModule,
     HttpClientModule,
     MatSnackBarModule,
     MatAutocompleteModule,
     FormsModule, 
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule,
+    MatDialogModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

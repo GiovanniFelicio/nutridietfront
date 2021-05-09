@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="">
-</head>
-<body id="reportsPage">
-    <div class="" id="home">
-
-        <nd-nav></nd-nav>
-        
-        <nd-header></nd-header>
-
-        <hr>
-
-        <nd-content></nd-content>
-        
-        <nd-footer></nd-footer>
-
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
     </div>
-</body>
-</html>
+</div>
+
+<div id="main-wrapper" data-layout="vertical" data-sidebartype="full">
+    <nd-nav></nd-nav>
+    <nd-sidenav></nd-sidenav>
+    <router-outlet></router-outlet>
+</div>
