@@ -8,8 +8,8 @@ export class ComponentService {
   constructor(private _resolver: ComponentFactoryResolver) { }
 
   createComponent<C>(container: ViewContainerRef, content: Type<C>, idx?: number, injector?: Injector): ComponentRef<C> {
-    let factory = this._resolver.resolveComponentFactory(content);    
-    let component = container.createComponent<C>(factory, idx, injector);
+    let factory = this._resolver.resolveComponentFactory(content); 
+    let component = container.createComponent<C>(factory);
 
     return component;
   }

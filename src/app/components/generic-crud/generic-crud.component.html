@@ -1,0 +1,18 @@
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Feeds</h4>
+                <nd-datatable [model]="getModel()" [columns]="getColumns()">
+                </nd-datatable>
+            </div>
+        </div>
+    </div>
+</div> -->
+<main #main>
+
+</main>
+<nd-footer>
+    <button class="btn btn-danger ml-1" (click)="back()">Voltar</button>
+    <button class="btn btn-primary ml-1" *ngIf="isCreate()" (click)="goToCreate()">Novo</button>
+</nd-footer>

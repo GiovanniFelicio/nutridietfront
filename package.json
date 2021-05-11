@@ -25,6 +25,7 @@
     "datatables.net-dt": "^1.10.20",
     "jquery": "^3.4.1",
     "mdbootstrap": "^4.19.2",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
