@@ -1,0 +1,7 @@
+.mat-tab-label, .mat-tab-link {
+    color: #000 !important;
+}
+
+::ng-deep .mat-ink-bar {
+    background-color:#000000 !important;
+}

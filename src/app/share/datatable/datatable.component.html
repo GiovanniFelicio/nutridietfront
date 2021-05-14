@@ -1,12 +1,12 @@
-<table id="example" datatable [dtOptions]="dtOptions" class="display responsive nowrap" style="width:100%">
+<table class="table table-hover">
     <thead>
+      <tr>
+        <th scope="col" *ngFor="let column of getColumns()">{{column}}</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of items">
-            <td *ngFor="let objKey of _object.keys(row)">{{row[objKey]}}</td>
-        </tr>
-        <tr *ngIf="items?.length == 0">
-            <td colspan="3" class="no-data-available">No data!</td>
-        </tr>
+      <tr *ngFor="let contet of getContent()">
+        <th *ngFor="let cont of content">{{cont}}</th>
+      </tr>
     </tbody>
-</table>
+  </table>

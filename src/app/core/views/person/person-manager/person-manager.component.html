@@ -1,0 +1,137 @@
+<nd-content>
+    <div content>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Novo</mat-card-title>
+                <mat-card-subtitle>Cadastro</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-tab-group animationDuration="0ms" dynamicHeight dynamicWidth>
+                    <mat-tab label="Geral">
+                        <mat-accordion class="example-headers-align">
+                            <mat-expansion-panel class="mt-4 bg-light" hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="h6"> Dados Pessoais </mat-panel-title>
+                                    <mat-panel-description> Coloque os dados pessoais da pessoa &nbsp;
+                                        <mat-icon>account_circle</mat-icon>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                    
+                                <div class="form-row mt-3">
+                                    <div class="form-group col-12">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Código: </mat-label>
+                                            <input matInput disabled>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <mat-form-field appearance="fill" class="form-field w-100">
+                                    <mat-label>Nome: </mat-label>
+                                    <input matInput [(ngModel)]="model['name']" name="name">
+                                </mat-form-field>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Data de Nascimento</mat-label>
+                                            <input matInput [matDatepicker]="picker" [(ngModel)]="model['date_birth']">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Gênero</mat-label>
+                                            <mat-select [(value)]="model['gender']">
+                                                <mat-option [value]="gender.value" *ngFor="let gender of getGenderTypes()">{{gender.label}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel class="mt-4 bg-light" hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="h6"> Documentação </mat-panel-title>
+                                    <mat-panel-description> Coloque os dados pessoais da pessoa &nbsp;
+                                        <mat-icon>folder_open</mat-icon>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>N° do Documento: </mat-label>
+                                            <input matInput [(ngModel)]="model['document']" name="number">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Tipo de Documento: </mat-label>
+                                            <mat-select [(value)]="model['document_type']">
+                                                <mat-option [value]="type.value" *ngFor="let type of getDocumentTypes()">{{type.label}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel class="mt-4 bg-light" hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="h6"> Endereço </mat-panel-title>
+                                    <mat-panel-description> Coloque os dados relacionado a endereço &nbsp;
+                                        <mat-icon> my_location</mat-icon>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                
+                                <div class="form-row">
+                                    <div class="col-sm-12 col-md-6 col-lg-2">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>CEP</mat-label>
+                                            <input matInput [(ngModel)]="model['document']" name="number" type="search">
+                                            <mat-icon matSuffix>search</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>CEP</mat-label>
+                                            <input matInput [(ngModel)]="model['document']" name="number" type="search">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="ol-sm-12 col-md-6 col-lg-4">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Complemento</mat-label>
+                                            <input matInput [(ngModel)]="model['document']" name="number" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="ol-sm-12 col-md-6 col-lg-4">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Número</mat-label>
+                                            <input matInput [(ngModel)]="model['document']" name="number" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </mat-tab>
+                    <mat-tab label="Segmentação"></mat-tab>
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
+        <hr>
+        
+        <footer class="page-footer font-small blue pr-1 pb-2 bg-light">
+            <div class="container-fluid text-right">
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-danger mr-1" (click)="goBack()">Cancelar</button>
+                        <button class="btn btn-success ml-1" (click)="manager(model)">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</nd-content>

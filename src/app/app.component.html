@@ -1,12 +1,20 @@
-<div class="preloader">
-    <div class="lds-ripple">
-        <div class="lds-pos"></div>
-        <div class="lds-pos"></div>
-    </div>
-</div>
+<mat-toolbar color="primary" class="example-toolbar">
+    <button class="btn btn-light" (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="text-light ml-4">NutriDiet</h1>
+</mat-toolbar>
 
-<div id="main-wrapper" data-layout="vertical" data-sidebartype="full">
-    <nd-nav></nd-nav>
-    <nd-sidenav></nd-sidenav>
-    <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #snav mode="side" fixedTopGap="56" [opened]="false">
+        <mat-list role="list">
+            <mat-list-item role="listitem">Item 1</mat-list-item>
+            <mat-list-item role="listitem">Item 2</mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

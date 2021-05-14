@@ -15,12 +15,12 @@ export class HeaderComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.headerService.title.subscribe(title => {
-      this.title = title;
-    });
+    // this.headerService.title.subscribe(title => {
+    //   this.title = title;
+    // });
 
     this.activatedRoute.data.subscribe(data => {
-      console.log(data);
+      this.title = data.header;
     })
   }
 

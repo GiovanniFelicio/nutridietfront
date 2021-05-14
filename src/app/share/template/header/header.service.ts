@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HeaderService {
 
-  public title = new BehaviorSubject('Title');
+  // public title = new BehaviorSubject('Title');
 
   constructor() { }
 
-  setTitle(title: string): void {
-    this.title.next(title);
-  }
+  // setTitle(title: string): void {
+  //   this.title.next(title);
+  // }
 }

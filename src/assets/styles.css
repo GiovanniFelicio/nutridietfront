@@ -1,0 +1,13 @@
+::ng-deep .info {
+    background-color: #2196F3;
+}
+::ng-deep .success {
+    background-color: #1DE9B6;
+}
+::ng-deep .error {
+    background-color: #B00020;
+}
+
+.mat-simple-snackbar-action {
+    color: #fff;
+}

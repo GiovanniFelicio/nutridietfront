@@ -1,23 +1,29 @@
+import { PersonService } from './person.service';
+import { EnumPersonRoutes } from './models/enum-person.routes';
+import { Router } from '@angular/router';
+import { Person } from './models/person';
 import { HeaderService } from './../../../share/template/header/header.service';
-import { Component, OnInit } from '@angular/core';
-import { NDDataTableColumn } from 'src/app/share/datatable/datatable.column';
+import { Component, OnInit, Type } from '@angular/core';
+import { NDDataTableColumn } from 'src/app/share/datatable-server-side/datatable-server-side.column';
+import { AbstractWindows } from '../../components/window/models/abstract-windows';
 
 @Component({
   selector: 'nd-person',
   templateUrl: './person.component.html',
-  styleUrls: ['./person.component.css']
+  styleUrls: ['./person.component.css'],
+  providers:[PersonService]
 })
-export class PersonComponent implements OnInit {
+export class PersonComponent implements OnInit, AbstractWindows {
 
   private columns: NDDataTableColumn[] = []
 
-  private model: any;
+  model: Type<Person> = Person;
 
-  constructor(private headerService: HeaderService) { }
+  base_route: string = EnumPersonRoutes.PERSONAPIV1;
+
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {
-    this.headerService.setTitle('Pessoas');
-
     this.setColumns();
   }
 
@@ -33,7 +39,7 @@ export class PersonComponent implements OnInit {
     this.columns.push(new NDDataTableColumn('Status'));
   }
 
-  getModel(): any {
-    return this.model;
+  goToManagerCreate(): void {
+    this._router.navigate([EnumPersonRoutes.PERSONMODULE.concat(EnumPersonRoutes.PERSONMANAGER.path)]);
   }
 }

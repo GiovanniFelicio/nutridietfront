@@ -3,21 +3,52 @@ import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { PersonComponent } from './views/person/person.component';
-import { ManagerComponent } from './views/person/manager/manager.component';
+import { PersonManagerComponent } from './views/person/person-manager/person-manager.component';
 import { PatientComponent } from './views/patient/patient.component';
 import { ShareModule } from '../share/share.module';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { TabComponent } from './components/tab/tab.component';
+
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule }   from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
     PersonComponent,
-    ManagerComponent,
-    PatientComponent
+    PersonManagerComponent,
+    PatientComponent,
+    TabComponent
   ],
   imports: [
     CommonModule,
     CoreRoutingModule,
-    ShareModule
+    ShareModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule,
+    MatExpansionModule
   ]
 })
 export class CoreModule { }

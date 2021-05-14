@@ -1,50 +1,35 @@
-import { DatatableService } from './datatable.service';
-import { NDDataTableColumn } from 'src/app/share/datatable/datatable.column';
-import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
-
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
   selector: 'nd-datatable',
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.css']
 })
-export class DatatableComponent implements OnInit {
+export class DatatableComponent implements OnInit, OnChanges{  
 
-  @Input() model: any;
+  @Input() columns: string[];
 
-  @Input() columns: NDDataTableColumn[];  
+  @Input() content: Array<string[]>;
 
-  dtOptions: DataTables.Settings = {}
-  items: any[];
-  _object = Object;
+  private _columns: string[];
 
-  constructor(private datatableService: DatatableService) { }
+  private _content: Array<string[]>;
+
+  constructor() { }
 
   ngOnInit(): void {
+  }
 
-    var _columns: any[] = []
+  ngOnChanges() {
+    this._columns = this.columns;
+    this._content = this.content
+  }
 
-    this.columns.forEach(col => {
-      _columns.push({title: col.column})
-    })    
+  getColumns () {
+    return this._columns;
+  }
 
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      serverSide: true,
-      processing: true,
-      columns: _columns,
-      responsive: true,
-      ajax: (dataTablesParameters: any, callback) => {
-        this.datatableService.getData(dataTablesParameters).subscribe(resp => {
-          this.items = resp.data
-          callback({
-            recordsTotal: resp.recordsTotal,
-            recordsFiltered: resp.recordsFiltered,
-            data: [],
-          });
-        });
-      }
-    };
+  getContent() {
+    return this._content;
   }
 }

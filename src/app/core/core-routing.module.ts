@@ -1,10 +1,12 @@
-import { PersonComponent } from './views/person/person.component';
+import { EnumPersonRoutes } from './views/person/models/enum-person.routes';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PatientComponent } from './views/patient/patient.component';
 
 const routes: Routes = [
-  {path: 'person', component: PersonComponent, data:{header: 'pessoas'}},
+  EnumPersonRoutes.PERSON,
+  EnumPersonRoutes.PERSONMANAGER,
+  EnumPersonRoutes.PERSONMANAGERID,
   {path: 'patient', component: PatientComponent}
 ];
 
