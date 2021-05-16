@@ -16,11 +16,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 import { FormsModule }   from '@angular/forms';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent
+    InputComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

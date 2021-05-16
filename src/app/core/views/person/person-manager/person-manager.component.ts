@@ -1,3 +1,4 @@
+import { Person } from './../models/person';
 import { WindowComponent } from './../../../components/window/window.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EnumPersonRoutes } from './../models/enum-person.routes';
@@ -6,6 +7,7 @@ import { PersonService } from './../person.service';
 import { EnumGenre } from './../models/enum-genre';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { PersonAddress } from '../models/person-address';
 
 @Component({
   selector: 'nd-person-manager',
@@ -13,29 +15,17 @@ import * as moment from 'moment';
   styleUrls: ['./person-manager.component.css'],
   providers:[PersonService]
 })
-export class PersonManagerComponent extends WindowComponent implements OnInit, AfterViewInit {
+export class PersonManagerComponent extends WindowComponent<Person> implements OnInit, AfterViewInit {
 
   // dataSource = new MatTableDataSource(this.personDocuments);
-
-  step = 0;
-
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
 
   constructor(private _router: Router,protected activatedRoute: ActivatedRoute, private personService: PersonService) {
     super(activatedRoute, personService);
   }
 
   ngOnInit(): void {
+    this.model = new Person();
+    this.model.person_address = new PersonAddress();
     // this.formManager = this.personService.createForm(new Person(), this.formBuilder);
   }
 
@@ -56,9 +46,9 @@ export class PersonManagerComponent extends WindowComponent implements OnInit, A
   //   delete this.getDocuments()[documentIdx];
   // }
 
-  manager(_model: object) {
-    if (_model['date_birth']) {
-      _model['date_birth'] = moment(_model['date_birth']).format('YYYY-MM-DD');
+  manager(_model: Person) {
+    if (_model.date_birth) {
+      _model.date_birth = moment(_model.date_birth).format('YYYY-MM-DD');
     }    
 
     if (this.isNew) {
@@ -68,6 +58,13 @@ export class PersonManagerComponent extends WindowComponent implements OnInit, A
     } else {
       this.personService.update(this.id, this.model);
     }
+  }
+
+  searchCEP() {
+    this.personService.findCEP(this.model.person_address.code)
+      .subscribe(res => {
+        this.model.person_address = res;
+      });
   }
 
   getGenderTypes () {

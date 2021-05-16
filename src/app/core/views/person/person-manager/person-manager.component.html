@@ -21,21 +21,21 @@
                                     <div class="form-group col-12">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>Código: </mat-label>
-                                            <input matInput disabled>
+                                            <input matInput disabled [(ngModel)]="model.code">
                                         </mat-form-field>
                                     </div>
                                 </div>
 
                                 <mat-form-field appearance="fill" class="form-field w-100">
                                     <mat-label>Nome: </mat-label>
-                                    <input matInput [(ngModel)]="model['name']" name="name">
+                                    <input matInput [(ngModel)]="model.name" name="name">
                                 </mat-form-field>
                                 
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>Data de Nascimento</mat-label>
-                                            <input matInput [matDatepicker]="picker" [(ngModel)]="model['date_birth']">
+                                            <input matInput [matDatepicker]="picker" [(ngModel)]="model.date_birth">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
@@ -43,7 +43,7 @@
                                     <div class="col-md-6">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>Gênero</mat-label>
-                                            <mat-select [(value)]="model['gender']">
+                                            <mat-select [(value)]="model.gender">
                                                 <mat-option [value]="gender.value" *ngFor="let gender of getGenderTypes()">{{gender.label}}
                                                 </mat-option>
                                             </mat-select>
@@ -63,13 +63,13 @@
                                     <div class="col-md-6">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>N° do Documento: </mat-label>
-                                            <input matInput [(ngModel)]="model['document']" name="number">
+                                            <input matInput [(ngModel)]="model.document" name="number">
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>Tipo de Documento: </mat-label>
-                                            <mat-select [(value)]="model['document_type']">
+                                            <mat-select [(value)]="model.document_type">
                                                 <mat-option [value]="type.value" *ngFor="let type of getDocumentTypes()">{{type.label}}
                                                 </mat-option>
                                             </mat-select>
@@ -89,7 +89,7 @@
                                     <div class="col-sm-12 col-md-6 col-lg-2">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>CEP</mat-label>
-                                            <input matInput [(ngModel)]="model['document']" name="number" type="search">
+                                            <input matInput [(ngModel)]="model.person_address.code" (change)="searchCEP()" name="number" type="search">
                                             <mat-icon matSuffix>search</mat-icon>
                                         </mat-form-field>
                                     </div>
@@ -97,27 +97,46 @@
                                 <div class="form-row">
                                     <div class="col-sm-12 col-md-6 col-lg-4">
                                         <mat-form-field appearance="fill" class="form-field w-100">
-                                            <mat-label>CEP</mat-label>
-                                            <input matInput [(ngModel)]="model['document']" name="number" type="search">
+                                            <mat-label>Logradouro</mat-label>
+                                            <input matInput [(ngModel)]="model.person_address.address" name="place" type="search">
                                         </mat-form-field>
                                     </div>
-                                    <div class="ol-sm-12 col-md-6 col-lg-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>Complemento</mat-label>
-                                            <input matInput [(ngModel)]="model['document']" name="number" type="text">
+                                            <input matInput [(ngModel)]="model.person_address.complement" name="complement" type="text">
                                         </mat-form-field>
                                     </div>
-                                    <div class="ol-sm-12 col-md-6 col-lg-4">
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
                                         <mat-form-field appearance="fill" class="form-field w-100">
                                             <mat-label>Número</mat-label>
-                                            <input matInput [(ngModel)]="model['document']" name="number" type="number">
+                                            <input matInput [(ngModel)]="model.person_address.number" name="numberPlace" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Bairro</mat-label>
+                                            <input matInput [(ngModel)]="model.person_address.district" name="neighborhood" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>Cidade</mat-label>
+                                            <input matInput [(ngModel)]="model.person_address.city" name="city" type="text">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <mat-form-field appearance="fill" class="form-field w-100">
+                                            <mat-label>UF</mat-label>
+                                            <input matInput [(ngModel)]="model.person_address.state" name="uf" type="text">
                                         </mat-form-field>
                                     </div>
                                 </div>
                             </mat-expansion-panel>
                         </mat-accordion>
                     </mat-tab>
-                    <mat-tab label="Segmentação"></mat-tab>
+                    <mat-tab label="Segmentação">
+                    </mat-tab>
                 </mat-tab-group>
             </mat-card-content>
         </mat-card>

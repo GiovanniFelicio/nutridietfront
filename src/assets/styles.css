@@ -8,6 +8,18 @@
     background-color: #B00020;
 }
 
-.mat-simple-snackbar-action {
+.mat-simple-snackbar-action .mat-button-wrapper {
     color: #fff;
+}
+
+.dialog-warning {
+    background-color: #ffb22e !important;
+    color: #fff !important;
+    white-space: pre-wrap;
+}
+
+.dialog-danger {
+    background-color: #cc1717 !important;
+    color: #fff !important;
+    white-space: pre-wrap;
 }

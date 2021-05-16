@@ -1,4 +1,4 @@
-import { PersonDocument } from './person-document';
+import { PersonAddress } from './person-address';
 import { PersonEmail } from './person-email';
 import { EnumGenre } from './enum-genre';
 import { EnumStatus } from './../../../models/enum/enum-status';
@@ -8,11 +8,12 @@ export class Person extends AbstractModel {
 
     code: number;
     name: string;
-    date_birth: Date;
+    date_birth: string;
     document: string;
     document_type: string;
     emails: PersonEmail[];
-    genre: EnumGenre;    
+    gender: EnumGenre;    
     status: EnumStatus;
+    person_address: PersonAddress;
 
 }

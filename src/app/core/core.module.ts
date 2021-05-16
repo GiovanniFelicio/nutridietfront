@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
@@ -51,4 +51,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatExpansionModule
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+
+  static injector: Injector;
+  
+  constructor(injector: Injector) {
+    CoreModule.injector = injector;
+  }
+}
