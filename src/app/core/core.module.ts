@@ -1,10 +1,10 @@
+import { PersonComponent } from './components/views/person/person.component';
 import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
-import { PersonComponent } from './views/person/person.component';
-import { PersonManagerComponent } from './views/person/person-manager/person-manager.component';
-import { PatientComponent } from './views/patient/patient.component';
+import { PersonManagerComponent } from './components/views/person/person-manager/person-manager.component';
+import { PatientComponent } from './components/views/patient/patient.component';
 import { ShareModule } from '../share/share.module';
 
 import { ReactiveFormsModule } from '@angular/forms';

@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <div id="formContent">
+
+        <div class="">
+            <p class="p-3 h4">LogIn</p>
+        </div>
+        <form *ngIf="authForm" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="form-field w-75">
+                <mat-label>Username: </mat-label>
+                <input matInput formControlName="username">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="form-field w-75">
+                <mat-label>Password: </mat-label>
+                <input matInput formControlName="password" type="password">
+            </mat-form-field>
+            <input type="submit" class="" value="Log In">
+        </form>
+
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+
+    </div>
+</div>

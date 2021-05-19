@@ -1,16 +1,18 @@
+import { AbstractPath } from './../../core/api/abstract-path';
+import { ApiService } from './../../core/service/api.service';
 import { DataTable } from './datatable-server-side';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatatableService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private __apiService: ApiService) { }
 
-  getData(_url, dataTablesParameters): Observable<DataTable> {
-    return this.http.post<DataTable>(_url, dataTablesParameters)
+  getData(path: AbstractPath, dataTablesParameters): Observable<DataTable> {
+    return this.__apiService.request(path, dataTablesParameters)
   }
 }

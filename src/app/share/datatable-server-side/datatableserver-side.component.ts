@@ -1,3 +1,5 @@
+import { AbstractPath } from './../../core/api/abstract-path';
+import { AbstractModel } from 'src/app/core/common/models/abstract-model';
 import { DatatableService } from './datatable-server-side.service';
 import { NDDataTableColumn } from 'src/app/share/datatable-server-side/datatable-server-side.column';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +13,7 @@ import { Input } from '@angular/core';
 })
 export class DatatableServerSideComponent implements OnInit {
 
-  @Input() base_route: string;
+  @Input() model: AbstractModel;
 
   @Input() columns: NDDataTableColumn[];
 
@@ -27,9 +29,12 @@ export class DatatableServerSideComponent implements OnInit {
 
     this.columns.forEach(col => {
       _columns.push({title: col.column})
-    })    
+    })
 
-    let url = this.base_route.concat('data/');
+    let path: AbstractPath = this.model.path();
+
+    path.method = 'POST'
+    path.urn = 'data/'
 
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -38,7 +43,7 @@ export class DatatableServerSideComponent implements OnInit {
       columns: _columns,
       responsive: true,
       ajax: (dataTablesParameters: any, callback) => {
-        this.datatableService.getData(url,dataTablesParameters).subscribe(resp => {
+        this.datatableService.getData(path, dataTablesParameters).subscribe(resp => {
           this.items = resp.data
           callback({
             recordsTotal: resp.recordsTotal,

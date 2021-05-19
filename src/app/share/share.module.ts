@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './template/header/header.component';
@@ -17,7 +18,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MatIconModule } from '@angular/material/icon';
 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { CleanComponent } from './layouts/clean/clean.component';
+import { MainComponent } from './layouts/main/main.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -29,7 +36,10 @@ import { FormsModule }   from '@angular/forms';
     NavComponent,
     DatatableServerSideComponent,
     CardComponent,
-    DatatableComponent],
+    DatatableComponent,
+    CleanComponent,
+    MainComponent,
+    NotFoundComponent],
   imports: [
     CommonModule,
     DataTablesModule,
@@ -37,7 +47,12 @@ import { FormsModule }   from '@angular/forms';
     MatSidenavModule,
     FormsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatListModule,
+    MatMenuModule
   ],
   exports: [
     HeaderComponent,
@@ -47,6 +62,9 @@ import { FormsModule }   from '@angular/forms';
     NavComponent,
     DatatableServerSideComponent,
     CardComponent,
-    DatatableComponent]
+    DatatableComponent,
+    CleanComponent,
+    MainComponent,
+    NotFoundComponent]
 })
 export class ShareModule { }

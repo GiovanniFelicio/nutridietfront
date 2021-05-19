@@ -1,30 +1,40 @@
-import { ObservableUtil } from './../utils/ObservableUtil';
+import { AbstractPath } from './../api/abstract-path';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AbstractCrudOperations } from './../models/interfaces/abstract-crud-operations';
+import { AbstractCrudOperations } from '../common/interfaces/abstract-crud-operations';
+import { ApiUtil } from 'src/app/architecture/utils/api.util';
 
 export abstract class CrudService<T, ID> implements AbstractCrudOperations<T, ID>{
 
-  constructor(protected _http: HttpClient, protected _url: string) {
+  private __url: string;
+
+  constructor(protected _http: HttpClient, 
+      protected _path: AbstractPath) {
+      this.__url = `${_path.base}${_path.module}${_path.path}`
   }
 
-  save(t: T): Observable<T> {
-    return new ObservableUtil().getReturnAPI(this._http.post<T>(this._url, t));
+  _save(t: T): Observable<T> {
+
+    let response = ApiUtil.getReturnAPI(this._http.post<T>(this.__url, t));
+
+    ApiUtil.resolveResponse(response);
+
+    return response;
   }
 
-  update(id: ID, t: T): Observable<T> {
-    return new ObservableUtil().getReturnAPI(this._http.put<T>(this._url+id+'/', t, {}));
+  _update(id: ID, t: T): Observable<T> {
+    return ApiUtil.getReturnAPI(this._http.put<T>(this.__url+id+'/', t, {}));
   }
 
-  findOne(id: ID): Observable<T> {
-    return this._http.get<T>(this._url+id+'/');
+  _findOne(id: ID): Observable<T> {
+    return ApiUtil.getReturnAPI(this._http.get<T>(this.__url+id+'/'));
   }
 
-  findAll(): Observable<T[]> {
+  _findAll(): Observable<T[]> {
     return null;
   }
 
-  delete(id: ID): Observable<any> {
+  _delete(id: ID): Observable<any> {
     return null;
   }
 }
